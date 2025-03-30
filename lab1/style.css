@@ -9,12 +9,12 @@ header {
     background-color: #fcd703;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-weight: bold;
-    font-size: 26px;
+    font-size: 22px;
     color: black;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;
+    padding: 0px 20px;
 }
 
 .buttons {
@@ -24,7 +24,7 @@ header {
 
 button {
     font-family: sans-serif;
-    font-size: 22px;
+    font-size: 20px;
     color: black;
     padding: 10px 15px;
     border: none;
@@ -42,8 +42,8 @@ button {
 .apply-filters {
     width: 100%; 
     padding: 10px;
-    background-color: black;
-    color: white;
+    background-color: #fcd703;
+    color: black;
     font-family: sans-serif;
     font-size: 16px;
     border: none;
@@ -73,15 +73,6 @@ button:hover {
     font-size: 16px;
 }
 
-.search-btn {
-    padding: 10px 15px;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-}
 
 main {
     display: flex;
@@ -148,14 +139,14 @@ main {
 }
 
 .book-price {
-    color: #448e46;
+    color: black;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
 .add-to-cart {
-    background-color: #28a745;
-    color: white;
+    background-color: #fcd703;
+    color: black;
     border: none;
     padding: 8px 15px;
     border-radius: 5px;
@@ -166,7 +157,7 @@ main {
 }
 
 .add-to-cart:hover {
-    background-color: #218838;
+    background-color: yellow;
 }
 
 
@@ -202,4 +193,79 @@ main {
 .filter-group label:not(:first-child) { 
     font-weight: normal;
     font-size: 14px;
+}
+
+.add-book-form {
+    width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.add-book-form h2 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.add-book-form label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+.add-book-form input,
+.add-book-form select,
+.add-book-form button {
+    width: calc(100% - 16px);
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+
+.add-book-form input[type="file"] {
+    border: none;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.cancel-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 16px;
+    width: 100%; 
+    padding: 0px;
+    background-color: rgb(220, 33, 33);
+    color: white;
+    font-family: sans-serif;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.cancel-button:hover {
+    background-color: rgb(255, 62, 62);
+}
+
+footer {
+    background-color: #fcd703;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 20px;
 }

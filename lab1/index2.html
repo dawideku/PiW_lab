@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookser</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Księgarnia Bookser</h1>
+        <form class="search-bar">
+            <input type="text" placeholder="Szukaj książki...">
+            <button type="submit" class="button_search">🔍</button>
+        </form>
+        <div class="buttons">
+            <button>Logowanie</button>
+            <button>Rejestracja</button>
+            <button>🛒</button>
+        </div>
+    </header>
+    <main>
+        <section class="add-book-form">
+            <h2>Dodaj nową książkę</h2>
+            <form>
+                <label for="title">Tytuł książki:</label>
+                <input type="text" id="title" name="title" required>
+
+                <label for="author">Autor:</label>
+                <select id="author" name="author">
+                    <option value="tokarczuk">Olga Tokarczuk</option>
+                    <option value="mickiewicz">Adam Mickiewicz</option>
+                    <option value="lem">Stanisław Lem</option>
+                    <option value="sapkowski">Andrzej Sapkowski</option>
+                </select>
+
+                <label for="genre">Gatunek:</label>
+                <select id="genre" name="genre">
+                    <option value="literatura-piekna">Literatura piękna</option>
+                    <option value="kryminal">Kryminał</option>
+                    <option value="fantastyka">Fantastyka</option>
+                    <option value="historia">Historia</option>
+                    <option value="dla-dzieci">Dla dzieci</option>
+                </select>
+
+                <label for="year">Rok wydania:</label>
+                <input type="number" id="year" name="year" min="1900" max="2025" required>
+
+                <label for="price">Cena (PLN):</label>
+                <input type="number" id="price" name="price" min="0" step="0.01" required>
+
+                <label for="publisher">Wydawnictwo:</label>
+                <select id="publisher" name="publisher">
+                    <option value="znak">Znak</option>
+                    <option value="czytelnik">Czytelnik</option>
+                    <option value="prószyński">Prószyński i S-ka</option>
+                    <option value="rebis">Rebis</option>
+                </select>
+
+                <label for="cover">Okładka:</label>
+                <select id="cover" name="cover">
+                    <option value="twarda">Twarda</option>
+                    <option value="miekka">Miękka</option>
+                </select>
+
+                <label for="cover-image">Dodaj zdjęcie okładki:</label>
+                <input type="file" id="cover-image" name="cover-image" accept="image/*">
+                <div class="form-buttons">
+                    <a href="index.html" class="cancel-button">Anuluj</a>
+                    <button type="submit" class="apply-filters">Dodaj książkę</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>Autor: Dawid Kawałko</p>
+    </footer>
+</body>
+</html>
