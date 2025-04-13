@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do Lista</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1>To-Do Lista</h1>
+    <div class="back-color">
+        <div class="main-container">
+            <div id="priority-menu" style="min-width: 150px;">
+                <h3>Priorytety</h3>
+                <ul>
+                    <li><button onclick="switchList('low')">Mało ważne</button></li>
+                    <li><button onclick="switchList('medium')">Ważne</button></li>
+                    <li><button onclick="switchList('high')">Bardzo ważne</button></li>
+                </ul>
+            </div>
+            <div>
+                <form id="todo-form" onsubmit="event.preventDefault(); addTask();">
+                    <input type="text" id="task-input" placeholder="Wpisz zadanie..." />
+                    <select id="priority-select">
+                        <option value="low">Mało ważne</option>
+                        <option value="medium">Ważne</option>
+                        <option value="high">Bardzo ważne</option>
+                    </select>
+                    <button type="submit">Dodaj</button>
+                    <button type="button" id="undo-button" disabled>Cofnij Usunięcie</button>
+                </form>
+
+                <table id="task-table-low" class="task-table" style="display: none;">
+                    <thead>
+                        <tr>
+                            <th>Zadanie</th>
+                            <th>Dodano</th>
+                            <th>Zakończono</th>
+                            <th>Usuń</th>
+                        </tr>
+                    </thead>
+                    <tbody id="task-list-low"></tbody>
+                </table>
+
+                <table id="task-table-medium" class="task-table" style="display: none;">
+                    <thead>
+                        <tr>
+                            <th>Zadanie</th>
+                            <th>Dodano</th>
+                            <th>Zakończono</th>
+                            <th>Usuń</th>
+                        </tr>
+                    </thead>
+                    <tbody id="task-list-medium"></tbody>
+                </table>
+
+                <table id="task-table-high" class="task-table" style="display: none;">
+                    <thead>
+                        <tr>
+                            <th>Zadanie</th>
+                            <th>Dodano</th>
+                            <th>Zakończono</th>
+                            <th>Usuń</th>
+                        </tr>
+                    </thead>
+                    <tbody id="task-list-high"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
