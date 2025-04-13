@@ -4,8 +4,8 @@ Projekt strony internetowej księgarni **Bookser**, umożliwiający przeglądani
 
 ## Podgląd strony
 
-<img src="strona_glowna.png" width="1440" height="720">
-<img src="dodanie_ksiazki.png" width="1440" height="720">
+<img src="strona_glowna.png" width="1200">
+<img src="dodanie_ksiazki.png" width="1200">
 
 ## Technologie
 - HTML

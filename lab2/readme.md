@@ -4,9 +4,9 @@ Projekt strony internetowej prostej **ToDo listy**, umożliwiający dodawanie/us
 
 ## Podgląd strony
 
-<img src="screen1.png" width="1440" height="800">
-<img src="screen2.png" width="1440" height="800">
-<img src="screen3.png" width="1440" height="800">
+<img src="screen1.png" width="1200">
+<img src="screen2.png" width="1200">
+<img src="screen3.png" width="1200">
 
 ## Technologie
 - HTML
