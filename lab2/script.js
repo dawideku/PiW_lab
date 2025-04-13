@@ -88,6 +88,52 @@ function formatDate(date) {
     return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
 }
 
+function filterTasks(query) {
+    const rows = document.querySelectorAll(`#task-table-${activeList} tbody tr`);
+    const lowerQuery = query.toLowerCase();
+  
+    if (lowerQuery === "") {
+      rows.forEach((row) => row.classList.remove("highlighted-task"));
+      return;
+    }
+  
+    rows.forEach((row) => {
+      const taskText = row.cells[0].textContent.toLowerCase();
+      if (taskText.includes(lowerQuery)) {
+        row.classList.add("highlighted-task");
+      } else {
+        row.classList.remove("highlighted-task");
+      }
+    });
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+    const exampleTasks = [
+      { taskText: "Oddać projekt do klienta", priority: "high" },
+      { taskText: "Umówić wizytę u dentysty", priority: "high" },
+      { taskText: "Zapłacić rachunki za prąd i internet", priority: "high" },
+      { taskText: "Spakować dokumenty do urzędu", priority: "high" },
+      { taskText: "Przygotować prezentację na spotkanie", priority: "high" },
+  
+      { taskText: "Kupić składniki na obiad", priority: "medium" },
+      { taskText: "Wysłać CV na ofertę pracy", priority: "medium" },
+      { taskText: "Uzupełnić dane w profilu LinkedIn", priority: "medium" },
+      { taskText: "Zarezerwować bilety na weekend", priority: "medium" },
+      { taskText: "Napisać wiadomość do znajomego w sprawie wyjazdu", priority: "medium" },
+  
+      { taskText: "Przesadzić rośliny", priority: "low" },
+      { taskText: "Posprzątać folder „Pobrane”", priority: "low" },
+      { taskText: "Zrobić backup zdjęć", priority: "low" },
+      { taskText: "Obejrzeć zaległy odcinek serialu", priority: "low" },
+      { taskText: "Wypróbować nową aplikację do planowania dnia", priority: "low" }
+    ];
+  
+    exampleTasks.forEach(task => {
+      addTask(task.taskText, new Date(), null, false, task.priority);
+    });
+});
+  
+
 document.getElementById("undo-button").addEventListener("click", function () {
     if (!lastDeletedTask) return;
     addTask(

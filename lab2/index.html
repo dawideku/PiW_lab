@@ -17,6 +17,14 @@
                     <li><button onclick="switchList('medium')">Ważne</button></li>
                     <li><button onclick="switchList('high')">Bardzo ważne</button></li>
                 </ul>
+                <div class="search-container">
+                    <input
+                        type="text"
+                        id="search-input"
+                        placeholder="Szukaj zadania..."
+                        oninput="filterTasks(this.value)"
+                    />
+                </div>
             </div>
             <div>
                 <form id="todo-form" onsubmit="event.preventDefault(); addTask();">

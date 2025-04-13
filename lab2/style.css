@@ -28,10 +28,6 @@ body {
 }
 
 
-h1 {
-    color: #5c4d7d;
-}
-
 #todo-form {
     width: 828px;
     display: flex;
@@ -223,4 +219,32 @@ th {
     background-color: #cdb4f5;
     color: #4a148c;
     box-shadow: 0 0 0 2px #b39ddb inset;
-}  
+}
+
+.search-container {
+    margin-top: 20px;
+}
+
+#search-input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.highlighted-task {
+    background-color: #fce4ec;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #5c4d7d;
+    margin-bottom: 30px;
+    background: #e9ddff;
+    padding: 20px 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0d4fa;
+    text-align: center;
+}
