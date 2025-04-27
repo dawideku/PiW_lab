@@ -269,3 +269,21 @@ footer {
   font-weight: bold;
   margin-top: 20px;
 }
+
+.book-actions {
+  margin-bottom: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.edit-button, .delete-button {
+  padding: 3px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.delete-button {
+  background-color: red;
+}

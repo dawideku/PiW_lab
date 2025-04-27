@@ -84,6 +84,10 @@ export default function Index() {
                 </div>
                 <p className="book-title">Tajemnica Zazu</p>
                 <p className="book-price">39.99 PLN</p>
+                <div className="book-actions">
+                  <button className="edit-button">Edytuj</button>
+                  <button className="delete-button">Usuń</button>
+                </div>
                 <button className="add-to-cart">Dodaj do koszyka</button>
               </div>
             ))}
