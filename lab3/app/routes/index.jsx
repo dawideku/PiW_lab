@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router";
+import { BooksContext } from "../context_folder/context";
 
 export default function Index() {
+    const { books } = useContext(BooksContext);
     return (
       <>
         <header>
@@ -76,14 +78,14 @@ export default function Index() {
           </aside>
   
           <section className="books">
-            {Array.from({ length: 15 }).map((_, index) => (
-              <div key={index} className="book-tile">
+            {books.map((book) => (
+              <div key={book.id} className="book-tile">
                 <div className="book-image">
-                  <img src="zazu.jpg" alt={`Książka ${index + 1}`} className="default-img" />
-                  <img src="zazu_glasses.jpg" alt={`Książka ${index + 1} (hover)`} className="hover-img" />
+                  <img src={book.image} alt={book.title} className="default-img" />
+                  <img src={book.hoverImage} alt={`${book.title} (hover)`} className="hover-img" />
                 </div>
-                <p className="book-title">Tajemnica Zazu</p>
-                <p className="book-price">39.99 PLN</p>
+                <p className="book-title">{book.title}</p>
+                <p className="book-price">{book.price.toFixed(2)} PLN</p>
                 <div className="book-actions">
                   <button className="edit-button">Edytuj</button>
                   <button className="delete-button">Usuń</button>

@@ -7,6 +7,7 @@ import {
   ScrollRestoration,
 } from "react-router";
 import stylesheet from "./app.css?url";
+import { BooksProvider } from "./context_folder/context";
 
 export const links = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -41,7 +42,11 @@ export function Layout({ children }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <BooksProvider>
+    <Outlet />
+    </BooksProvider>
+  );
 }
 
 export function ErrorBoundary({ error }) {
