@@ -1,9 +1,15 @@
 import React, { useContext } from "react";
 import { Link } from "react-router";
 import { BooksContext } from "../context_folder/context";
+import { AuthContext } from "../context_folder/AuthContext";
+import { auth } from "../firebaseConfig";
 
 export default function Index() {
+    const { user } = useContext(AuthContext);
     const { books } = useContext(BooksContext);
+    const handleLogout = () => {
+      auth.signOut();
+    };
     return (
       <>
         <header>
@@ -12,22 +18,30 @@ export default function Index() {
             <input type="text" placeholder="Szukaj książki..." />
             <button type="submit" className="button_search">🔍</button>
           </form>
+
           <div className="buttons">
-            <Link to="/login">
-              <button>Logowanie</button>
-            </Link>
-            <Link to="/login">
-              <button>Rejestracja</button>
-            </Link>
+            {!user ? (
+              <>
+                <Link to="/login"><button>Logowanie</button></Link>
+                <Link to="/login"><button>Rejestracja</button></Link>
+              </>
+            ) : (
+              <>
+                <span>Witaj, {user.displayName || user.email}</span>
+                <button onClick={handleLogout}>Wyloguj</button>
+              </>
+            )}
             <button>🛒</button>
           </div>
         </header>
   
         <main>
           <aside className="filters">
-            <Link to="/newbook">
-              <button className="apply-filters">Dodaj książkę</button>
-            </Link>
+            {user && (
+              <Link to="/newbook">
+                <button className="apply-filters">Dodaj książkę</button>
+              </Link>
+            )}
             <h2>Filtry</h2>
   
             <div className="filter-group">

@@ -1,17 +1,15 @@
-import React from 'react';
-import { signInWithPopup } from 'firebase/auth';
-import { auth, provider } from '../firebaseConfig.js';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { signInWithPopup } from "firebase/auth";
+import { auth, provider } from "../firebaseConfig";
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const signInWithGoogle = async () => {
     try {
-      const result = await signInWithPopup(auth, provider);
-      console.log("Zalogowano jako:", result.user.displayName);
-      navigate("/");
+      await signInWithPopup(auth, provider);
+      navigate("/"); // Przekierowanie po udanym logowaniu
     } catch (error) {
       console.error("Błąd logowania:", error);
     }
@@ -26,9 +24,7 @@ const Login = () => {
           <button type="submit" className="button_search">🔍</button>
         </form>
         <div className="buttons">
-          <button>Logowanie</button>
-          <button>Rejestracja</button>
-          <button>🛒</button>
+          <Link to="/"><button>Powrót</button></Link>
         </div>
       </header>
 
@@ -36,7 +32,7 @@ const Login = () => {
         <section className="login-section">
           <h2>Zaloguj się</h2>
           <p>Użyj konta Google, aby zalogować się do Booksera:</p>
-          <button onClick={handleLogin} className="apply-filters">
+          <button onClick={signInWithGoogle} className="apply-filters">
             Zaloguj się przez Google
           </button>
           <div style={{ marginTop: '1rem' }}>
