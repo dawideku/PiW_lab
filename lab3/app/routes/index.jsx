@@ -13,8 +13,12 @@ export default function Index() {
             <button type="submit" className="button_search">🔍</button>
           </form>
           <div className="buttons">
-            <button>Logowanie</button>
-            <button>Rejestracja</button>
+            <Link to="/login">
+              <button>Logowanie</button>
+            </Link>
+            <Link to="/login">
+              <button>Rejestracja</button>
+            </Link>
             <button>🛒</button>
           </div>
         </header>
