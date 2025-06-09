@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router';
+import React, { useState, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context_folder/AuthContext';
+import { db, storage } from '../firebaseConfig';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 const Newbook = () => {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     title: '',
     author: 'tokarczuk',
@@ -9,28 +16,62 @@ const Newbook = () => {
     year: '',
     price: '',
     publisher: 'znak',
-    cover: 'twarda',
     coverImage: null,
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
+    setFormData(prev => ({
+      ...prev,
       [name]: name === 'price' || name === 'year' ? Number(value) : value,
     }));
   };
 
   const handleFileChange = (e) => {
-    setFormData((prevData) => ({
-      ...prevData,
+    setFormData(prev => ({
+      ...prev,
       coverImage: e.target.files[0],
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    if (!user) {
+      alert("Musisz być zalogowany, aby dodać książkę!");
+      return;
+    }
+
+    try {
+      let coverImageUrl = "";
+
+      if (formData.coverImage) {
+        const imageRef = ref(storage, `book_covers/${user.uid}_${Date.now()}_${formData.coverImage.name}`);
+        await uploadBytes(imageRef, formData.coverImage);
+        coverImageUrl = await getDownloadURL(imageRef);
+      }
+
+      await addDoc(collection(db, "books"), {
+        title: formData.title,
+        author: formData.author,
+        genre: formData.genre,
+        year: formData.year,
+        price: formData.price,
+        publisher: formData.publisher,
+        cover: "zazu.jpg",               // statyczna okładka
+        hoverImage: "zazu_glasses.jpg",  // statyczny hover image
+        coverImageUrl: coverImageUrl,
+        owner: user.uid,
+        createdAt: serverTimestamp(),
+      });
+
+      alert("Książka została dodana!");
+      navigate("/");
+
+    } catch (error) {
+      console.error("Błąd przy dodawaniu książki:", error);
+      alert("Coś poszło nie tak. Spróbuj ponownie.");
+    }
   };
 
   return (
@@ -126,18 +167,7 @@ const Newbook = () => {
               <option value="rebis">Rebis</option>
             </select>
 
-            <label htmlFor="cover">Okładka:</label>
-            <select
-              id="cover"
-              name="cover"
-              value={formData.cover}
-              onChange={handleChange}
-            >
-              <option value="twarda">Twarda</option>
-              <option value="miekka">Miękka</option>
-            </select>
-
-            <label htmlFor="cover-image">Dodaj zdjęcie okładki:</label>
+            <label htmlFor="cover-image">Dodaj zdjęcie okładki (opcjonalnie):</label>
             <input
               type="file"
               id="cover-image"
@@ -145,7 +175,7 @@ const Newbook = () => {
               accept="image/*"
               onChange={handleFileChange}
             />
-            
+
             <div className="form-buttons">
               <Link to="/" className="cancel-button">Anuluj</Link>
               <button type="submit" className="apply-filters">Dodaj książkę</button>
@@ -155,7 +185,7 @@ const Newbook = () => {
       </main>
 
       <footer>
-        <p>Autor: Dawid Kawałko</p>
+        <p>Autor: Dawid</p>
       </footer>
     </div>
   );
