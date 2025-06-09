@@ -58,8 +58,8 @@ const Newbook = () => {
         year: formData.year,
         price: formData.price,
         publisher: formData.publisher,
-        cover: "zazu.jpg",               // statyczna okładka
-        hoverImage: "zazu_glasses.jpg",  // statyczny hover image
+        image: "zazu.jpg",
+        hoverImage: "zazu_glasses.jpg",
         coverImageUrl: coverImageUrl,
         owner: user.uid,
         createdAt: serverTimestamp(),

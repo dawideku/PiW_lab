@@ -3,13 +3,31 @@ import { Link } from "react-router";
 import { BooksContext } from "../context_folder/context";
 import { AuthContext } from "../context_folder/AuthContext";
 import { auth } from "../firebaseConfig";
+import { doc, deleteDoc } from "firebase/firestore";
+import { db } from "../firebaseConfig";
 
 export default function Index() {
     const { user } = useContext(AuthContext);
-    const { books } = useContext(BooksContext);
+    const { books, setBooks } = useContext(BooksContext);
     const handleLogout = () => {
       auth.signOut();
     };
+
+    const handleDelete = async (bookId) => {
+      const confirmed = window.confirm("Czy na pewno chcesz usunąć tę książkę?");
+      if (!confirmed) return;
+
+      try {
+        await deleteDoc(doc(db, "books", bookId));
+        alert("Książka została usunięta!");
+        // Aktualizacja lokalnego stanu książek, aby usunięta książka zniknęła z widoku
+        setBooks(prevBooks => prevBooks.filter(book => book.id !== bookId));
+      } catch (error) {
+        console.error("Błąd podczas usuwania książki:", error);
+        alert("Coś poszło nie tak podczas usuwania książki.");
+      }
+    };
+
     return (
       <>
         <header>
@@ -103,11 +121,20 @@ export default function Index() {
                   <img src={book.hoverImage} alt={`${book.title} (hover)`} className="hover-img" />
                 </div>
                 <p className="book-title">{book.title}</p>
-                <p className="book-price">{book.price.toFixed(2)} PLN</p>
-                <div className="book-actions">
-                  <button className="edit-button">Edytuj</button>
-                  <button className="delete-button">Usuń</button>
-                </div>
+                <p className="book-price">
+                  {typeof book.price === 'number' ? `${book.price.toFixed(2)} PLN` : 'Brak ceny'}
+                </p>
+                {user?.uid === book.owner && (
+                  <div className="book-actions">
+                    <Link to={`/editbook/${book.id}`} className="edit-button">Edytuj</Link>
+                    <button
+                      className="delete-button"
+                      onClick={() => handleDelete(book.id)}
+                    >
+                      Usuń
+                    </button>
+                  </div>
+                )}
                 <button className="add-to-cart">Dodaj do koszyka</button>
               </div>
             ))}
