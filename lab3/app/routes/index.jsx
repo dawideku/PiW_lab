@@ -210,7 +210,7 @@ export default function Index() {
       </main>
 
       <footer>
-        <p>Autor: Dawid</p>
+        <p>Autor: Dawid Kawałko</p>
       </footer>
     </>
   );
